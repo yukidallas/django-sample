@@ -4,19 +4,27 @@ import os
 ROOT_PATH = os.path.dirname(os.path.dirname(__file__))
 
 DEBUG = os.getenv('DJANGO_SAMPLE_BEBUG')
-DJANGO_SAMPLE
+
 ALLOWED_HOSTS = [
     'localhost'
 ]
 
 INSTALLED_APPS = [
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'django_extensions'
+    'django_extensions',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.twitter',
+
+    'django-sample.accounts'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -26,6 +34,12 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware'
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
+
+AUTH_USER_MODEL = 'accounts.User'
 
 DATABASES = {
     'default': {
